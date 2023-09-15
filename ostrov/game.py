@@ -12,22 +12,23 @@ def setup():
             else:
                 empty.append(canvas.create_image(x, y, image=ostrov3, anchor=tk.NW))
     coins = canvas.create_text(WIDTH - 3*square, 0, text=coin_count, font=('Helvetica', '30', 'bold'), anchor=tk.NW)
-    button = canvas.create_image(WIDTH - square, 0, image=ostrov_kruh0, anchor=tk.NW)
+    button = canvas.create_image(WIDTH, 0, image=ostrov_kruh0, anchor=tk.NE)
 
 
 def click(e):
     global empty
     clicked = canvas.find_overlapping(e.x, e.y, e.x+1, e.y+1)
-    if button in clicked:
-        change_button()
-    elif clicked[0] in empty:
-        canvas.itemconfig(clicked[0], image=change_island(clicked[0]))
-        empty.remove(clicked[0])
-    elif clicked[0] in most:
-        if canvas.itemcget(clicked[0], 'image') == 'pyimage2':
-            canvas.itemconfig(clicked[0], image=ostrov2)
-        else:
-            canvas.itemconfig(clicked[0], image=ostrov1)
+    if len(clicked) != 0:
+        if button in clicked:
+            change_button()
+        elif clicked[0] in empty:
+            canvas.itemconfig(clicked[0], image=change_island(clicked[0]))
+            empty.remove(clicked[0])
+        elif clicked[0] in most:
+            if canvas.itemcget(clicked[0], 'image') == 'pyimage2':
+                canvas.itemconfig(clicked[0], image=ostrov2)
+            else:
+                canvas.itemconfig(clicked[0], image=ostrov1)
 
 
 def change_button():
@@ -71,6 +72,8 @@ most = []
 
 setup()
 canvas.bind('<Button-1>', click)
+# canvas.tag_bind('tag', 'key', func)   to iste ako canvas.bind
+# canvas.create_image(tag='hah')        TODO: toto zmeni tak asi z pyimage1 na hah spoiler: nezmeni
 
 
 root.mainloop()

@@ -1,0 +1,36 @@
+pouzi dekompoziciu- rozklad vacsieho problemu na mensie
+logicke chyby su horsie ako syntakticke chyby
+runtimeove chyby zbehnu za chodu programu
+refaktorizacia kodu- proces upravy kodu, jeho vylepsenie
+offset- posunutie
+
+py -m pip install pillow
+
+def sum_strings(x, y):
+    sum = ''
+    if x == '':
+        x = '0'
+    if y == '':
+        y = '0'
+    xy = sorted([int(x), int(y)])
+    xy = [str(xy[0]), str(xy[1])]
+    for i in range(len(xy)):
+        if xy[i] == '':
+            xy[i] == '0'
+    tempnum = 0
+#     temp = ''
+#     for i in range(len(xy[1]) - len(xy)[0]):
+#         temp += '0'
+#     temp += xy[0]
+#     xy[0] = temp
+#     for i in range(len(xy[0]))
+    for i in range(-1, -(len(xy[0])) - 1, -1):
+        temp = str(int(xy[0][i]) + int(xy[1][i])+tempnum)
+        if len(temp) == 2:
+            tempnum = int(temp[0])
+        else:
+            tempnum = 0
+        sum += temp[-1]
+    sum = sum[::-1]
+    return xy[1][:len(xy[1])-len(xy[0])] + sum
+
